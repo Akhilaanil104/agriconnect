@@ -1,0 +1,64 @@
+{% load static%}
+<!DOCTYPE html>
+<html ng-app="myapp">
+<head>
+    <!-- Other meta tags, stylesheets, and scripts remain unchanged -->
+
+    <style>
+        /* Existing styles... */
+
+        /* Add border to the table */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #000; /* Define your desired border style */
+            padding: 8px;
+            text-align: left;
+        }
+		body{
+			background-image: url("{% static 'media/h1.jpg' %}");
+		}
+    </style>
+
+    <!-- Remaining scripts -->
+</head>
+<h2 class="content-sub-heading" style="text-align:center;font-size:40px;color:blue;font-weight:200">
+	View Scheme</h2>
+<body ng-controller="myappCtrl" class="front bg-pattern-dark">
+    <!-- Your existing HTML content -->
+
+    <!-- Modify the table structure to apply borders -->
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Scheme Name</th>
+                <th>Description</th>
+                <th>Eligibility</th>
+                <th>Required Documents</th>
+                <th>Last Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in data %}
+            <tr>
+                <td>{{ item.sname }}</td>
+                <td>{{ item.desc }}</td>
+                <td>{{ item.eligibility }}</td>
+                <td>{{ item.reqdocs }}</td>
+                <td>{{ item.lastdate }}</td>
+                <td>
+                    <a class="btn" href="{% url 'edit_scheme' item.id %}">Update</a>
+                    <a class="btn" href="{% url 'delete_scheme' item.id %}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Remaining scripts -->
+</body>
+</html>
